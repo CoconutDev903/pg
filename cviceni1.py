@@ -33,5 +33,7 @@ if __name__ == "__main__":
     # x = nul(1, 2, 3)
     # x = div(10, 2)
     #vysledek = je_delitelne_beze_zbytku(10, 3)
-    vysledek = je_delitelne_3(9)
+    vysledek = je_delitelne_3(12)
     print (vysledek)
+
+    #test
