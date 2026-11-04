@@ -13,7 +13,9 @@ def read_header(file_name, header_length):
     Tato funkce načte binární soubor z cesty file_name,
     z něj přečte prvních header_length bytů a ty vrátí pomocí return
     """
-    return b'xxx'
+    with open(file_name, 'rb') as f:
+        return f.read(header_length)
+    
 
 
 def is_jpeg(file_name):
@@ -23,10 +25,11 @@ def is_jpeg(file_name):
     """
     # načti hlavičku souboru
     header = read_header(file_name, len(jpeg_header))
+    return header == jpeg_header
 
     # vyhodnoť zda je soubor jpeg
 
-    return False
+
 
 
 def is_gif(file_name):
@@ -34,8 +37,9 @@ def is_gif(file_name):
     Funkce zkusí přečíst ze souboru hlavičku obrázku jpeg,
     tu srovná s definovanými hlavičkami v proměnných gif_header1 a gif_header2
     """
+    return header == gif_header1 or header == gif_header2
     # vyhodnoť zda je soubor gif
-    return False
+ 
 
 
 def is_png(file_name):
@@ -44,7 +48,7 @@ def is_png(file_name):
     tu srovná s definovanou hlavičkou v proměnné png_header
     """
     # vyhodnoť zda je soubor png
-    return False
+    return header == png_header
 
 
 def print_file_type(file_name):
@@ -63,5 +67,12 @@ def print_file_type(file_name):
 
 if __name__ == '__main__':
     # přidej try-catch blok, odchyť obecnou vyjímku Exception a vypiš ji
-    file_name = sys.argv[1]
-    print_file_type(file_name)
+    try:
+        file_name = sys.argv[1]
+        print_file_type(file_name)
+    except IndexError:
+        print("Chyba: Nebyl zadán název souboru. Spusťte skript jako 'python fifth.py nazev_obrazku.pripona'")
+    except FileNotFoundError:
+        print(f"Chyba: Soubor '{sys.argv[1]}' nebyl nalezen.")
+    except Exception as e:
+        print(f"Neočekávaná chyba: {e}")
