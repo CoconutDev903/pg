@@ -37,6 +37,7 @@ def is_gif(file_name):
     Funkce zkusí přečíst ze souboru hlavičku obrázku jpeg,
     tu srovná s definovanými hlavičkami v proměnných gif_header1 a gif_header2
     """
+    header = read_header(file_name, len(gif_header1))
     return header == gif_header1 or header == gif_header2
     # vyhodnoť zda je soubor gif
  
@@ -48,6 +49,7 @@ def is_png(file_name):
     tu srovná s definovanou hlavičkou v proměnné png_header
     """
     # vyhodnoť zda je soubor png
+    header = read_header(file_name, len(png_header))
     return header == png_header
 
 
