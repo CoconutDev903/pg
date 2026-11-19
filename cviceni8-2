@@ -1,0 +1,25 @@
+toto si zkopírovat od učitele potom
+
+class Osoba:
+    def __init__(self, jmeno, telefon, email):
+        self.jmeno = jmeno
+        self.telefon = telefon
+        self.email = email
+
+def __str__(self):
+        return f"Osoba: {self.jmeno}, {self.telefon}, {self.email}"
+
+@classmethod
+def load_json_data(cls,data):
+    pass
+
+
+if __name__ == "__main__":
+    osoby = []
+
+    with open("osoby.json", "r") as fp:
+        data = json.loads(fp.read())
+        for record in data:
+            osoby.append(Osoba.load_data(record))
+
+    print(osoby)
